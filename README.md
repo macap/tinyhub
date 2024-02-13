@@ -2,6 +2,8 @@
 
 Configurable home page for your server or homelab with minimal footprint.
 
+## [> DEMO <](https://macap.github.io/tinyhub/)
+
 ![Tinyhub screenshot](/docs/bg2.jpg)
 
 ![Tinyhub dark mode screenshot](/docs/dark.jpg)
