@@ -1,0 +1,15 @@
+[Unit]
+Description=Web dashboard
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+#User=maciek
+ExecStart=/home/maciek/dashboard/server.sh
+
+[Install]
+WantedBy=multi-user.target
+Alias=dashboard.service

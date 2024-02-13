@@ -1,0 +1,251 @@
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Server: netcat!
+
+<script type="application/json" id="config">
+    {
+        "theme": "bg2",
+        "autoDark": false,
+        "menu": [{
+            "name": "Pihole",
+            "url": "http://192.168.1.20:8082/admin",
+            "logo": "http://192.168.1.20:8082/admin/img/logo.svg",
+            "logobg": ""
+        },{
+            "name": "Node-RED",
+            "url": "http://192.168.1.20:1880/",
+            "logo": "http://192.168.1.20:1880/red/images/node-red.svg",
+            "logobg": "#8f0000"
+        },{
+            "name": "Node-RED dashboard",
+            "url":"http://192.168.1.20:1880/ui",
+            "logoText":"📊"
+        },{
+            "name": "Camera",
+            "url": "http://192.168.1.21/",
+            "logoText": "📷"
+        },{
+            "name": "Router",
+            "url": "http://192.168.1.1/",
+            "logoText": "🛜"
+        }, {
+            "name":"HomeBridge Server 1",
+            "url":"#",
+            "logo":"https://raw.githubusercontent.com/homebridge/branding/master/logos/homebridge-color-round-stylized.png",
+            "logobg":"#431467"
+        }, {
+            "name": "Transmission web",
+            "url": "#",
+            "logo": "https://upload.wikimedia.org/wikipedia/commons/4/46/Transmission_Icon.svg"
+        }, {
+            "name":"Jellyfin",
+            "url": "#",
+            "logobg":"#000b25",
+            "logo":"https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/branding/SVG/icon-solid-black.svg"
+        }, {
+            "name":"Home Assistant",
+            "url":"#",
+            "logo":"https://www.home-assistant.io/images/favicon-192x192.png"
+        }]
+    }
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+<main id="main">
+<ul class="menu" id="menu"></ul>
+</main>
+</body>
+<style>
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+main {
+  font-family: 'Roboto', sans-serif;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  padding: 10px;
+}
+
+.bg1 {
+  background: rgb(124,91,108);
+background: linear-gradient(180deg, #796D8F 0%, #6EA0F6 30%, #9293C3 100%);
+}
+.bg2 {
+  background: rgb(94,216,236);
+background: linear-gradient(180deg, #59D6EE 0%, #46C8EF 60%, #1581B2 90%);
+}
+.bg3 {
+background: rgb(86,108,75);
+background: linear-gradient(180deg, rgba(86,108,75,1) 0%, rgba(236,134,120,1) 100%);
+}
+.bg4 {
+  background: rgb(0,0,1);
+background: linear-gradient(180deg, #040404 0%, #141415 25%, #060707 50%, #020202 80%);
+  
+}
+.bg5 {
+  background: linear-gradient(180deg, #5A5A5A 0%, #3E3D3D 20%, #222322 50%, #111111 90%)
+}
+
+.bg4 .name, .bg5 .name { color: #f1f1f1; }
+
+.bg5 .logo {
+  background-color: #111111;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.autodark {
+    background: linear-gradient(180deg, #5A5A5A 0%, #3E3D3D 20%, #222322 50%, #111111 90%) !important;
+  }
+  body.autodark .name {
+    color: #f1f1f1 !important;
+  }
+  body.autodark .logo {
+    background-color: #111111 ;
+    }
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 12px;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.name {
+  display: block;
+  margin-top: 16px;
+  font-size: 1rem;
+  color: #000;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  display:block;
+  box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
+  overflow: hidden;
+  padding: 7px;
+  background-blend-mode: overlay;
+	background-color: #ececec;
+  border-radius: 20%;
+  backdrop-filter: blur(33px);
+}
+
+.text-logo {
+  font-size: 50px;
+  line-height: 100px;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo, .logo img, .name, .text-logo {
+  transition: all 200ms ease-in-out;
+}
+
+@media(min-width: 768px) {
+    main {
+        padding: 5vw 5vh;
+    }
+    .name {
+        font-size: 1.5rem;
+    }
+
+  .menu {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px
+  }
+}
+
+@media(min-width: 1200px) {
+  .logo {
+    width: 200px;
+    height: 200px;
+    padding: 15px;
+  }
+  .text-logo {
+      font-size: 100px;
+        line-height: 200px;
+  }
+}
+
+a:hover .logo{
+ transform: scale(104%);
+  
+}
+
+a:hover .logo img, a:hover .text-logo {
+  transform: scale(104%);
+}
+
+a:hover .name {
+  transform: perspective(200px) translate3d(0,0, 5px);
+  
+}
+</style>
+<script type="text/javascript">
+    const config = JSON.parse(document.getElementById('config').innerHTML);
+    const $menu = document.getElementById('menu');
+
+    document.body.className = `${config.theme}${config.autoDark ? ' autodark' : ''}`;
+
+    config.menu.forEach(item => {
+        const $li = document.createElement('li');
+        const $a = document.createElement('a');
+        const $logo = document.createElement('div');
+        const $name = document.createElement('span');
+
+        $a.href = item.url;
+        $logo.className = 'logo';
+        $name.className = 'name';
+
+        if (item.logoText) {
+            const $text = document.createElement('span');
+            $text.className = 'text-logo';
+            $text.textContent = item.logoText;
+            $logo.appendChild($text);
+        } else {
+            const $img = document.createElement('img');
+            $img.src = item.logo;
+            $img.alt = item.name;
+            $logo.appendChild($img);
+        }
+
+        $name.textContent = item.name;
+
+        if (item.logobg) {
+            $logo.style.backgroundColor = item.logobg;
+        }
+
+        $a.appendChild($logo);
+        $a.appendChild($name);
+        $li.appendChild($a);
+        $menu.appendChild($li);
+    });
+    
+
+</script>
+
+
+
+
